@@ -1,3 +1,4 @@
+#pragma once
 struct Coordinates{
     int x;
     int y;
@@ -9,4 +10,11 @@ struct Coordinates{
         this->x = x;
         this->y = y;
     };
+    int cantorise() const {
+        return (x + y) * (x + y + 1) / 2 + x;
+    };
+    bool operator<(const Coordinates& b) const {
+        return (this->cantorise() < b.cantorise());
+    };
 };
+
