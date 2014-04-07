@@ -12,7 +12,7 @@ Map::Map(string filename){
     int x, y = 0;
     while(getline(f, line)) {
         for(x = 0; x < (int)line.size(); x++){
-         field[Coordinates(x, y)] = (int)(line[x]) - '0';
+            field[Coordinates(x, y)] = (int)(line[x]) - '0';
         }
         y++;
     }
@@ -21,9 +21,9 @@ Map::Map(string filename){
 }
 
 void Map::print() {
-    for(int i = 0; i < xSize; i++){
-        for(int j = 0; j < ySize; j++){
-            cout<<field[Coordinates(i,j)]<<' ';
+    for(int y = 0;y < ySize; y++){
+        for(int x = 0; x < xSize; x++){
+            cout<<field[Coordinates(x,y)]<<' ';
         }
         cout<<endl;
     }

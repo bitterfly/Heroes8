@@ -1,4 +1,13 @@
 #pragma once
+
+
+enum Direction {
+    Left,
+    Right,
+    Up,
+    Down
+};
+
 struct Coordinates{
     int x;
     int y;
@@ -16,5 +25,20 @@ struct Coordinates{
     bool operator<(const Coordinates& b) const {
         return (this->cantorise() < b.cantorise());
     };
+    Coordinates move(Direction where) {
+        switch(where) {
+        case Left:
+            return Coordinates(x - 1, y);
+            break;
+        case Right:
+            return Coordinates(x + 1, y);
+            break;
+        case Up:
+            return Coordinates(x, y - 1);
+            break;
+        case Down:
+            return Coordinates(x, y + 1);
+            break;
+        }
+    };
 };
-

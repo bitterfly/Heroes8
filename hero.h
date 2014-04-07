@@ -1,5 +1,8 @@
+# pragma once
+
 # include <iostream>
 # include <string>
+# include "coordinates.h"
 using namespace std;
 
 
@@ -31,7 +34,7 @@ public:
         return this->mana;
     };
 
-      double getMaxmana() const {
+    double getMaxmana() const {
         return this->maxmana;
     };
 
@@ -40,4 +43,7 @@ public:
     Hero();
 
     Hero(string name);
+
+    Coordinates position;
+
 };

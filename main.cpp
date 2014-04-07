@@ -1,11 +1,8 @@
-# include <iostream>
-# include <string>
-# include "hero.h"
-# include "item.h"
-# include "backpack.h"
-# include "map.h"
+# include "gameplay.h"
 
 int main(){
-    Map fuckme("map.txt");
-    fuckme.print();
+    Gameplay gp;
+    for(int i = 0; i < 5; i ++){
+    gp.prompt();
+    }
 }

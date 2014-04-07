@@ -6,6 +6,7 @@
 # include <fstream>
 # include <iostream>
 # include "coordinates.h"
+# include "hero.h"
 
 using namespace std;
 
