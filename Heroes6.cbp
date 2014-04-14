@@ -31,6 +31,20 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="backpack.cpp" />
+		<Unit filename="backpack.h" />
+		<Unit filename="coordinates.h" />
+		<Unit filename="gameplay.cpp" />
+		<Unit filename="gameplay.h" />
+		<Unit filename="hero.cpp" />
+		<Unit filename="hero.h" />
+		<Unit filename="item.cpp" />
+		<Unit filename="item.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="map.cpp" />
+		<Unit filename="map.h" />
+		<Unit filename="monster.cpp" />
+		<Unit filename="monster.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

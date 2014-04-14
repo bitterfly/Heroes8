@@ -5,6 +5,8 @@
 # include <climits>
 # include <fstream>
 # include <iostream>
+# include <cstdlib>
+# include <time.h>
 # include "coordinates.h"
 # include "hero.h"
 
@@ -14,6 +16,7 @@ class Map
 {
     private:
         int xSize, ySize;
+        Coordinates startPos;
     public:
         Map();
         Map(string filename);
@@ -25,4 +28,7 @@ class Map
             return ySize;
         };
         void print();
+        void randomise(vector<Coordinates> &way);
+        Coordinates getStartPos() const { return startPos; };
+
 };

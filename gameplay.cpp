@@ -2,10 +2,22 @@
 
 bool Gameplay::move(Direction where){
     Coordinates newPosition = dobrincho.position.move(where);
-    if (map->field[newPosition] == 0) {
-        dobrincho.position = newPosition;
-        cout << "Dobrincho at ("<< dobrincho.position.x<<" , "<< dobrincho.position.y<<") yo."<<endl;
-        return true;
+    if (map->field[newPosition] != 1)
+    {
+        if (newPosition.x < 0 || newPosition.x >= map->getXSize()
+        || newPosition.y < 0 || newPosition.y >= map->getYSize()) {
+            cout << "Can't go out of map."<<endl;
+            return false;
+        }
+        else {
+            dobrincho.position = newPosition;
+            cout << "Dobrincho at ("<< dobrincho.position.x<<" , "<< dobrincho.position.y<<") yo."<<endl;
+            return true;
+        }
+    }
+    else {
+        cout << "Can't step on 1, biatch!"<<endl;
+        return false;
     }
 }
 
@@ -46,4 +58,6 @@ void Gameplay::prompt()
 Gameplay::Gameplay()
 {
     map = new Map("map.txt");
+    dobrincho.position = map->getStartPos();
+    map->print();
 }
