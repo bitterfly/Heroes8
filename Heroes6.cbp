@@ -45,6 +45,8 @@
 		<Unit filename="map.h" />
 		<Unit filename="monster.cpp" />
 		<Unit filename="monster.h" />
+		<Unit filename="warrior.cpp" />
+		<Unit filename="warrior.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

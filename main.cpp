@@ -1,8 +1,12 @@
 # include "gameplay.h"
 
 int main(){
+    /*for (int ch = 0; ch <= 255; ch++) {
+        cout<<(int)ch<<": "<<ch<<endl;
+    } */
     Gameplay gp;
-    for(int i = 0; i < 5; i ++){
-    gp.prompt();
+    while(gp.prompt()){
+        gp.prompt();
     }
+    //gp.prompt();
 }

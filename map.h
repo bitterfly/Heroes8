@@ -6,9 +6,10 @@
 # include <fstream>
 # include <iostream>
 # include <cstdlib>
-# include <time.h>
+# include <ctime>
 # include "coordinates.h"
 # include "hero.h"
+# include "monster.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Map
     private:
         int xSize, ySize;
         Coordinates startPos;
+        vector<Coordinates> monsters_coordinates;
     public:
         Map();
         Map(string filename);
@@ -24,10 +26,14 @@ class Map
         int getXSize() const {
             return xSize;
         };
+
         int getYSize() const {
             return ySize;
         };
-        void print();
+
+        const vector <Coordinates>& getAllMonstersCoordinates()const{
+        return monsters_coordinates;
+        };
         void randomise(vector<Coordinates> &way);
         Coordinates getStartPos() const { return startPos; };
 

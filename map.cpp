@@ -31,15 +31,6 @@ Map::Map(string filename){
     randomise(way);
 }
 
-void Map::print() {
-    for(int y = 0;y < ySize; y++){
-        for(int x = 0; x < xSize; x++){
-            cout<<field[Coordinates(x,y)]<<' ';
-        }
-        cout<<endl;
-    }
-}
-
 void Map::randomise(vector<Coordinates> &way){
 srand(time(NULL));
 int index;
@@ -47,6 +38,8 @@ int index;
  for(int i = 0; i < 5 && !way.empty(); i ++){
     index = rand() % way.size();
     field[way[index]] = rand() % 2 + 2;
+    if(field[way[index]] == 2)
+        monsters_coordinates.push_back(way[index]);
     way.erase(way.begin() + index);
     }
 }

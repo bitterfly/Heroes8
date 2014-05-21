@@ -1,4 +1,7 @@
-#pragma once
+# pragma once
+# include <iostream>
+
+using namespace std;
 
 
 enum Direction {
@@ -22,9 +25,12 @@ struct Coordinates{
     int cantorise() const {
         return (x + y) * (x + y + 1) / 2 + x;
     };
-    bool operator<(const Coordinates& b) const {
-        return (this->cantorise() < b.cantorise());
+    bool operator<(const Coordinates& other) const {
+        return (this->cantorise() < other.cantorise());
     };
+    bool operator==(const Coordinates& other) const {
+        return (this->x == other.x && this->y == other.y);
+    }
     Coordinates move(Direction where) {
         switch(where) {
         case Left:
@@ -41,4 +47,7 @@ struct Coordinates{
             break;
         }
     };
+    void print() const {
+        cout<<"<"<<y<<", "<<x<<">";
+    }
 };

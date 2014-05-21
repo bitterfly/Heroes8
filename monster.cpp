@@ -1,12 +1,13 @@
 # include "monster.h"
 
 Monster::Monster(){
-hp = 100;
-maxhp = 100;
+    level = rand() % 5 + 1;
 }
-Monster::Monster(string name, double hp, double maxhp, double damage){
-this->name = name;
-this->hp = hp;
-this->maxhp = maxhp;
-this->damage = damage;
+
+double Monster::getDamage() const{
+return level*2 + 5;
+}
+
+void Monster::print() const {
+    cout<<"Monster "<<name<<" ["<<level<<"]"<<endl;
 }

@@ -1,31 +1,12 @@
 #pragma once
-# include <iostream>
-# include <string>
+
+# include "warrior.h"
+
 using namespace std;
 
-class Monster{
-private:
-    string name;
-    double hp;
-    double maxhp;
-    double damage;
+class Monster:Warrior {
 public:
     Monster();
-    Monster(string, double, double, double);
-
-    string getName() const{
-    return this->name;
-    };
-
-    double getHp() const{
-    return this->hp;
-    };
-
-    double getMaxhp() const{
-    return this->maxhp;
-    };
-
-    double getDamage() const{
-    return this->damage;
-    };
+    double getDamage() const;
+    void print() const;
 };
