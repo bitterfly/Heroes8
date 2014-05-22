@@ -59,3 +59,75 @@
 	<iostream>
 	<string>
 
+1400757328 source:g:\stuff\school\oop\heroes8\backpack.cpp
+	"backpack.h"
+
+1400757328 g:\stuff\school\oop\heroes8\backpack.h
+	"item.h"
+	<vector>
+
+1400757328 g:\stuff\school\oop\heroes8\item.h
+	<iostream>
+	<string>
+
+1400760788 source:g:\stuff\school\oop\heroes8\gameplay.cpp
+	"gameplay.h"
+
+1400760788 g:\stuff\school\oop\heroes8\gameplay.h
+	<iostream>
+	<string>
+	<conio.h>
+	<map>
+	"coordinates.h"
+	"hero.h"
+	"map.h"
+	<iomanip>
+	<windows.h>
+
+1400757328 g:\stuff\school\oop\heroes8\coordinates.h
+	<iostream>
+
+1400757328 g:\stuff\school\oop\heroes8\hero.h
+	"warrior.h"
+
+1400757328 g:\stuff\school\oop\heroes8\warrior.h
+	<string>
+	<iostream>
+	<ctime>
+	<cstdlib>
+	"coordinates.h"
+
+1400757328 g:\stuff\school\oop\heroes8\map.h
+	<string>
+	<vector>
+	<map>
+	<climits>
+	<fstream>
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"coordinates.h"
+	"hero.h"
+	"monster.h"
+
+1400760911 g:\stuff\school\oop\heroes8\monster.h
+	"warrior.h"
+
+1400757328 source:g:\stuff\school\oop\heroes8\hero.cpp
+	"hero.h"
+
+1400757328 source:g:\stuff\school\oop\heroes8\item.cpp
+	"item.h"
+
+1400757328 source:g:\stuff\school\oop\heroes8\main.cpp
+	"gameplay.h"
+
+1400761287 source:g:\stuff\school\oop\heroes8\map.cpp
+	"map.h"
+
+1400760911 source:g:\stuff\school\oop\heroes8\monster.cpp
+	"monster.h"
+
+1400757328 source:g:\stuff\school\oop\heroes8\warrior.cpp
+	"warrior.h"
+

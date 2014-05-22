@@ -4,6 +4,11 @@ Monster::Monster(){
     level = rand() % 5 + 1;
 }
 
+Monster::Monster(string name) {
+    this->name = name;
+    level = rand() % 5 + 1;
+}
+
 double Monster::getDamage() const{
 return level*2 + 5;
 }
