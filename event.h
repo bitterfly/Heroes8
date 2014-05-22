@@ -9,7 +9,9 @@ class Event{
 private:
     double hp,mana;
     int exp;
+    string txt;
 public:
     Event();
-    Event(string)
+    Event(istream & stream);
+    void print();
 };

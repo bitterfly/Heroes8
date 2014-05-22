@@ -21,3 +21,17 @@ double Hero::getMana() const {
 double Hero::getMaxMana() const {
     return level*8 + 20;
 }
+
+void Hero::setMana(double mana){
+this->mana = mana;
+if(this->mana > getMaxMana())
+    this->mana = getMaxMana();
+}
+
+void Hero::setExp(int exp){
+this->exp = exp;
+if(this->exp >=100){
+    level++;
+    this->exp = this->exp  - 100;
+}
+}

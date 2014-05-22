@@ -16,4 +16,6 @@ public:
     int getExp() const;
     double getMana() const;
     double getMaxMana() const;
+    void setMana(double mana);
+    void setExp(int exp);
 };

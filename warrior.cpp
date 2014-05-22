@@ -11,3 +11,9 @@ name = s;
 level = l;
 hp = getMaxhp();
 }
+
+void Warrior::setHp(double hp){
+this->hp = hp;
+if(this->hp>getMaxhp())
+    hp = getMaxhp();
+}

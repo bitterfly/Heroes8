@@ -34,4 +34,6 @@ public:
     Warrior();
 
     Warrior(string, int);
+
+    void setHp(double hp);
 };

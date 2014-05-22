@@ -106,6 +106,7 @@ Gameplay::Gameplay()
 {
     the_map = new Map("map.txt");
     readMonsterNames("names.txt");
+    readEvents("event.txt");
     // spawn the hero
     dobrincho.position = the_map->getStartPos();
 
@@ -114,7 +115,8 @@ Gameplay::Gameplay()
         monstersInc[the_map->getAllMonstersCoordinates()[i]] = Monster(monster_names[rand() % monster_names.size()]);
     }
     printMap();
-    printMonsters();
+    //printMonsters();
+    printEvents();
 }
 
 void Gameplay::readMonsterNames(string filename)
@@ -132,6 +134,22 @@ void Gameplay::readMonsterNames(string filename)
     f.close();
 }
 
+
+void Gameplay::readEvents(string filename){
+ifstream stream;
+stream.open(filename.c_str());
+if(!stream.is_open()){
+    cout<< "I won't fuck you" <<endl;
+    return;
+}
+while(!stream.eof()){
+    //cout<<"Now?"<<endl;
+    events.push_back(Event(stream));
+}
+stream.close();
+}
+
+
 void Gameplay::printMonsters()
 {
     for (map<Coordinates, Monster>::iterator iter = monstersInc.begin(); iter != monstersInc.end(); iter++) {
@@ -139,4 +157,12 @@ void Gameplay::printMonsters()
         cout<<" ";
         (*iter).second.print();
     }
+}
+
+void Gameplay::printEvents()
+{
+    for (int i = 0; i < events.size(); i++){
+    events[i].print();
+    }
+
 }

@@ -6,6 +6,7 @@
 # include "coordinates.h"
 # include "hero.h"
 # include "map.h"
+# include "event.h"
 # include <iomanip>
 # include <windows.h>
 
@@ -18,11 +19,14 @@ private:
     map <Coordinates, Monster> monstersInc;
     void printSpot(Coordinates position, bool single = false);
     vector<string> monster_names;
+    vector<Event> events;
 public:
     Gameplay();
     void printMap();
     bool prompt();
     void printMonsters();
+    void printEvents();
     void readMonsterNames(string filename);
+    void readEvents(string filename);
     bool move(Direction);
 };
