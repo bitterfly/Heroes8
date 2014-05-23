@@ -198,10 +198,23 @@ if(!stream.is_open()){
     return;
 }
 while(!stream.eof()){
-    //cout<<"Now?"<<endl;
     events.push_back(Event(stream));
 }
 stream.close();
+}
+
+
+void Gameplay::readItems(string filename){
+    ifstream stream;
+    stream.open(filename.c_str());
+    if(!stream.is_open()){
+        cout<<"Noo"<<endl;
+        return;
+    }
+    while(!stram.eof()){
+        items.push_back(Item(stream));
+    }
+    stream.close();
 }
 
 
