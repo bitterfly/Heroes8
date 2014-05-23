@@ -31,8 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="backpack.cpp" />
-		<Unit filename="backpack.h" />
 		<Unit filename="coordinates.h" />
 		<Unit filename="event.cpp" />
 		<Unit filename="event.h" />

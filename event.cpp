@@ -4,7 +4,7 @@ Event::Event(){
 }
 
 Event::Event(istream & stream){
-stream>>exp>>hp>>mana;
+stream>>exp>>hp>>mana>>has_item;
 getline(stream, txt);
 }
 
@@ -25,4 +25,8 @@ double Event::getMana() const {
 
 int Event::getExp() const {
     return exp;
+}
+
+bool Event::getHasItem() const {
+    return has_item;
 }

@@ -1,7 +1,7 @@
 # pragma once
 
 # include "warrior.h"
-
+# include "item.h"
 using namespace std;
 
 
@@ -11,6 +11,7 @@ private:
     int exp;
     double mana;
 public:
+    vector <Item* > backpack;
     Hero();
     Hero(string name, int level);
     int getExp() const;

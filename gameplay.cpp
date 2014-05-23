@@ -8,17 +8,19 @@ Gameplay::Gameplay()
     the_map = new Map("map.txt");
     readMonsterNames("names.txt");
     readEvents("event.txt");
+    readItems("items.txt");
     // spawn the hero
     dobrincho.position = the_map->getStartPos();
 
     // spawn a monster at every monster spot
-    for (int i = 0; i < the_map->getAllMonstersCoordinates().size(); i++){
+    for (int i = 0; i < (int)the_map->getAllMonstersCoordinates().size(); i++){
         monstersInc[the_map->getAllMonstersCoordinates()[i]] = Monster(monster_names[rand() % monster_names.size()]);
     }
     printMap();
     heroLifeBar();
     //printMonsters();
     //printEvents();
+    //printItems();
 }
 
 
@@ -68,12 +70,16 @@ cout<<setfill(' ')<<setw(4);
 cout<<"HP:   "<<dobrincho.getHp()<<endl;
 cout<<"Mana: "<<dobrincho.getMana()<<endl;
 cout<<"Exp:  "<<dobrincho.getExp()<<endl;
+    for(int i = 0; i < (int)dobrincho.backpack.size(); i++)
+        dobrincho.backpack[i]->print();
 }
 
 
 void Gameplay::event(){
 Event& event = events[rand() % events.size()];
 cout<<event.getTxt();
+if(event.getHasItem())
+    dobrincho.backpack.push_back(&(items[rand() % items.size()]));
 dobrincho.setHp(dobrincho.getHp() + event.getHp());
 dobrincho.setMana(dobrincho.getMana() + event.getMana());
 dobrincho.setExp(dobrincho.getExp() + event.getExp());
@@ -211,7 +217,7 @@ void Gameplay::readItems(string filename){
         cout<<"Noo"<<endl;
         return;
     }
-    while(!stram.eof()){
+    while(!stream.eof()){
         items.push_back(Item(stream));
     }
     stream.close();
@@ -229,8 +235,15 @@ void Gameplay::printMonsters()
 
 void Gameplay::printEvents()
 {
-    for (int i = 0; i < events.size(); i++){
+    for (int i = 0; i < (int)events.size(); i++){
     events[i].print();
     }
 
+}
+
+
+void Gameplay::printItems(){
+    for(int i = 0; i < (int)items.size(); i++){
+    items[i].print();
+    }
 }

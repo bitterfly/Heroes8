@@ -22,6 +22,7 @@ private:
     void printSpot(Coordinates position, bool single = false);
     vector<string> monster_names;
     vector<Event> events;
+    vector<Item> items;
     void heroLifeBar();
     void event();
     void fight();
@@ -29,9 +30,11 @@ public:
     Gameplay();
     void printMap();
     bool prompt();
-    void printMonsters();
-    void printEvents();
     void readMonsterNames(string filename);
     void readEvents(string filename);
+    void readItems(string filename);
     bool move(Direction);
+    void printMonsters();
+    void printEvents();
+    void printItems();
 };

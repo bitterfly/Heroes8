@@ -15,17 +15,29 @@ private:
 public:
     Item(){
     };
-    Item(string name, string descripiton, double weight, double manaCost);
+
+    Item(istream & stream){
+    stream>>weight>>manaCost>>name;
+    getline(stream, description);
+    };
+
     string getName() const{
     return this->name;
     };
+
     string getdescription() const{
     return this->description;
     };
+
     double getWeight() const{
     return this->weight;
     };
+
     double getManaCost() const{
     return this->manaCost;
+    };
+
+    void print(){
+    cout<<weight<<' '<<manaCost<<endl<<description<<endl;
     };
 };

@@ -10,6 +10,7 @@ private:
     double hp,mana;
     int exp;
     string txt;
+    bool has_item;
 public:
     Event();
     Event(istream & stream);
@@ -18,4 +19,5 @@ public:
     double getHp() const;
     double getMana() const;
     int getExp()const;
+    bool getHasItem() const;
 };
