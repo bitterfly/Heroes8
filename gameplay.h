@@ -22,7 +22,7 @@ private:
     void printSpot(Coordinates position, bool single = false);
     vector<string> monster_names;
     vector<Event> events;
-
+    void heroLifeBar();
     void event();
     void fight();
 public:

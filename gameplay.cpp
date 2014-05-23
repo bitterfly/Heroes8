@@ -16,6 +16,7 @@ Gameplay::Gameplay()
         monstersInc[the_map->getAllMonstersCoordinates()[i]] = Monster(monster_names[rand() % monster_names.size()]);
     }
     printMap();
+    heroLifeBar();
     //printMonsters();
     //printEvents();
 }
@@ -37,9 +38,11 @@ bool Gameplay::move(Direction where){
 
             switch(the_map->field[newPosition]) {
                 case 2:
+                    the_map->field[newPosition] = 0;
                     fight();
                     break;
                 case 3:
+                    the_map->field[newPosition] = 0;
                     event();
                     break;
             }
@@ -54,9 +57,27 @@ bool Gameplay::move(Direction where){
 }
 
 
+void Gameplay::heroLifeBar(){
+COORD pos;
+pos.X = 0;
+pos.Y = the_map->getYSize() + 4;
+SetConsoleCursorPosition(hConsole, pos);
+
+cout<<dobrincho.getName()<<" ["<<dobrincho.getLevel()<<"]"<<endl;
+cout<<setfill(' ')<<setw(4);
+cout<<"HP:   "<<dobrincho.getHp()<<endl;
+cout<<"Mana: "<<dobrincho.getMana()<<endl;
+cout<<"Exp:  "<<dobrincho.getExp()<<endl;
+}
+
+
 void Gameplay::event(){
 Event& event = events[rand() % events.size()];
 cout<<event.getTxt();
+dobrincho.setHp(dobrincho.getHp() + event.getHp());
+dobrincho.setMana(dobrincho.getMana() + event.getMana());
+dobrincho.setExp(dobrincho.getExp() + event.getExp());
+heroLifeBar();
 }
 
 
