@@ -33,7 +33,6 @@ Map::Map(string filename){
 }
 
 void Map::randomise(vector<Coordinates> &way){
-srand(time(NULL));
 int index;
 
  for(int i = 0; i < 15 && !way.empty(); i ++){

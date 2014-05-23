@@ -14,4 +14,8 @@ public:
     Event();
     Event(istream & stream);
     void print();
+    string const & getTxt()const;
+    double getHp() const;
+    double getMana() const;
+    int getExp()const;
 };

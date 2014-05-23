@@ -6,7 +6,6 @@
 # include <fstream>
 # include <iostream>
 # include <cstdlib>
-# include <ctime>
 # include "coordinates.h"
 # include "hero.h"
 # include "monster.h"

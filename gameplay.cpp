@@ -2,6 +2,25 @@
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+
+Gameplay::Gameplay()
+{
+    the_map = new Map("map.txt");
+    readMonsterNames("names.txt");
+    readEvents("event.txt");
+    // spawn the hero
+    dobrincho.position = the_map->getStartPos();
+
+    // spawn a monster at every monster spot
+    for (int i = 0; i < the_map->getAllMonstersCoordinates().size(); i++){
+        monstersInc[the_map->getAllMonstersCoordinates()[i]] = Monster(monster_names[rand() % monster_names.size()]);
+    }
+    printMap();
+    //printMonsters();
+    //printEvents();
+}
+
+
 bool Gameplay::move(Direction where){
     Coordinates newPosition = dobrincho.position.move(where);
     Coordinates oldPosition = dobrincho.position;
@@ -15,6 +34,16 @@ bool Gameplay::move(Direction where){
             dobrincho.position = newPosition;
             printSpot(oldPosition, true);
             printSpot(newPosition, true);
+
+            switch(the_map->field[newPosition]) {
+                case 2:
+                    fight();
+                    break;
+                case 3:
+                    event();
+                    break;
+            }
+
             return true;
         }
 
@@ -23,6 +52,18 @@ bool Gameplay::move(Direction where){
         return false;
     }
 }
+
+
+void Gameplay::event(){
+Event& event = events[rand() % events.size()];
+cout<<event.getTxt();
+}
+
+
+void Gameplay::fight(){
+cout<<"FIGHT!"<<endl;
+}
+
 
 void Gameplay::printSpot(Coordinates position, bool single) {
     COORD pos;
@@ -42,14 +83,23 @@ void Gameplay::printSpot(Coordinates position, bool single) {
             SetConsoleTextAttribute(hConsole, 2);
             cout<<(char)176;
             break;
+        case 2:
+            SetConsoleTextAttribute(hConsole, 2);
+            cout<<'!';
+            break;
+        case 3:
+            SetConsoleTextAttribute(hConsole, 2);
+            cout<<'*';
+            break;
         default:
             SetConsoleTextAttribute(hConsole, 7);
             cout<<' ';
         }
     }
     if (single) {
+        SetConsoleTextAttribute(hConsole, 7);
         pos.X = 0;
-        pos.Y = 0;
+        pos.Y = the_map->getYSize() + 2;
         SetConsoleCursorPosition(hConsole, pos);
     }
 }
@@ -102,22 +152,6 @@ switch(choice) {
 return (dobrincho.getHp() > 0);
 }
 
-Gameplay::Gameplay()
-{
-    the_map = new Map("map.txt");
-    readMonsterNames("names.txt");
-    readEvents("event.txt");
-    // spawn the hero
-    dobrincho.position = the_map->getStartPos();
-
-    // spawn a monster at every monster spot
-    for (int i = 0; i < the_map->getAllMonstersCoordinates().size(); i++){
-        monstersInc[the_map->getAllMonstersCoordinates()[i]] = Monster(monster_names[rand() % monster_names.size()]);
-    }
-    printMap();
-    //printMonsters();
-    printEvents();
-}
 
 void Gameplay::readMonsterNames(string filename)
 {

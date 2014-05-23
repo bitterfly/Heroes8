@@ -1,14 +1,16 @@
 #pragma once
-# include <iostream>
-# include <string>
+
 # include <conio.h>
+# include <cstdlib>
+# include <iomanip>
+# include <iostream>
 # include <map>
+# include <string>
+# include <windows.h>
 # include "coordinates.h"
 # include "hero.h"
 # include "map.h"
 # include "event.h"
-# include <iomanip>
-# include <windows.h>
 
 using namespace std;
 
@@ -20,6 +22,9 @@ private:
     void printSpot(Coordinates position, bool single = false);
     vector<string> monster_names;
     vector<Event> events;
+
+    void event();
+    void fight();
 public:
     Gameplay();
     void printMap();
