@@ -17,3 +17,7 @@ this->hp = hp;
 if(this->hp>getMaxhp())
     hp = getMaxhp();
 }
+
+void Warrior::setName(string n){
+this->name = n;
+}

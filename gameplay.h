@@ -26,6 +26,9 @@ private:
     void heroLifeBar();
     void event();
     void fight();
+    void clearUnderMap();
+    int treasures;
+    bool must_clear;
 public:
     Gameplay();
     void printMap();

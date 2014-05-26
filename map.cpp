@@ -4,6 +4,7 @@ Map::Map(){
 
 Map::Map(string filename){
     ifstream f;
+    treasures = 0;
     f.open(filename.c_str());
     if (!f.is_open()) {
         cout << "fuck you" << endl;
@@ -22,6 +23,8 @@ Map::Map(string filename){
             if(field[Coordinates(x, y)] == 8){
                 startPos = Coordinates(x, y);
             }
+            if(field[Coordinates(x, y)] == 7)
+                treasures++;
         }
         y++;
     }
@@ -42,4 +45,8 @@ int index;
         monsters_coordinates.push_back(way[index]);
     way.erase(way.begin() + index);
     }
+}
+
+int Map::getTreasures(){
+return treasures;
 }

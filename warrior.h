@@ -37,4 +37,6 @@ public:
     Warrior(string, int);
 
     void setHp(double hp);
+
+    void setName(string n);
 };

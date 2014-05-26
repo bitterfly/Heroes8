@@ -2,6 +2,11 @@
 
 # include "warrior.h"
 # include "item.h"
+# include "coordinates.h"
+# include <windows.h>
+# include <iomanip>
+# include <cmath>
+
 using namespace std;
 
 
@@ -19,4 +24,7 @@ public:
     double getMaxMana() const;
     void setMana(double mana);
     void setExp(int exp);
+    void lifeBar();
+    void lifeBar(Coordinates);
+    bool hasItem(Item& item);
 };

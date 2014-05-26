@@ -16,6 +16,7 @@ class Map
 {
     private:
         int xSize, ySize;
+        int treasures;
         Coordinates startPos;
         vector<Coordinates> monsters_coordinates;
     public:
@@ -35,5 +36,5 @@ class Map
         };
         void randomise(vector<Coordinates> &way);
         Coordinates getStartPos() const { return startPos; };
-
+        int getTreasures();
 };
