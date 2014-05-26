@@ -46,6 +46,7 @@ struct Coordinates{
             return Coordinates(x, y + 1);
             break;
         }
+        return Coordinates(x, y);
     };
     void print() const {
         cout<<"<"<<y<<", "<<x<<">";
