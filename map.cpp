@@ -38,7 +38,7 @@ Map::Map(string filename){
 void Map::randomise(vector<Coordinates> &way){
 int index;
 
- for(int i = 0; i < 15 && !way.empty(); i ++){
+ for(int i = 0; i < 30 && !way.empty(); i ++){
     index = rand() % way.size();
     field[way[index]] = rand() % 2 + 2;
     if(field[way[index]] == 2)

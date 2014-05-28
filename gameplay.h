@@ -7,36 +7,37 @@
 # include <map>
 # include <string>
 # include <windows.h>
+
 # include "coordinates.h"
+# include "event.h"
 # include "hero.h"
 # include "map.h"
-# include "event.h"
 
 using namespace std;
 
 class Gameplay{
 private:
     Hero dobrincho;
+    int treasures;
     Map *the_map;
-    map <Coordinates, Monster> monstersInc;
-    void printSpot(Coordinates position, bool single = false);
-    vector<string> monster_names;
     vector<Event> events;
     vector<Item> items;
-    void heroLifeBar();
+    vector<string> monster_names;
+    map <Coordinates, Monster> monstersInc;
+
+    void printSpot(Coordinates position, bool single = false);
     void event();
     void fight();
-    void clearUnderMap();
-    int treasures;
-    bool must_clear;
+    void heroLifeBar();
+    void printUnderMap(bool clear = false);
 public:
     Gameplay();
-    void printMap();
     bool prompt();
+    void printMap();
+    bool move(Direction);
     void readMonsterNames(string filename);
     void readEvents(string filename);
     void readItems(string filename);
-    bool move(Direction);
     void printMonsters();
     void printEvents();
     void printItems();

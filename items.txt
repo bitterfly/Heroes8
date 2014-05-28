@@ -4,5 +4,5 @@
 5 15 15 0 Wand Magic fireballs, +15 magical damage!
 17 0 15 0 Pickaxe +15 damage!
 17 0 20 0 BastardSword + 20 damage!
-1 0 0 0 HealthPotion healthpotion
-2 0 0 0 ManaPotion manapotion
+1 0 0 0 HealthPotion health
+2 0 0 0 ManaPotion mana

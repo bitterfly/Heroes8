@@ -1,11 +1,14 @@
 # pragma once
 
+# include <cmath>
+# include <iomanip>
+# include <windows.h>
+
 # include "warrior.h"
 # include "item.h"
 # include "coordinates.h"
-# include <windows.h>
-# include <iomanip>
-# include <cmath>
+
+
 
 using namespace std;
 
@@ -16,15 +19,21 @@ private:
     int exp;
     double mana;
 public:
-    vector <Item* > backpack;
     Hero();
     Hero(string name, int level);
+
+    void setMana(double mana);
+    void setExp(int exp);
+
     int getExp() const;
     double getMana() const;
     double getMaxMana() const;
-    void setMana(double mana);
-    void setExp(int exp);
+
     void lifeBar();
     void lifeBar(Coordinates);
     bool hasItem(Item& item);
+    void add(Item &item);
+    void drop(int index);
+    double weight();
+    vector <Item* > backpack;
 };
