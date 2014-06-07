@@ -4,6 +4,7 @@
 # include <ctime>
 # include <iostream>
 # include <string>
+# include <windows.h>
 # include <vector>
 
 # include "coordinates.h"
@@ -33,4 +34,6 @@ public:
     double getMaxhp() const;
 
     Coordinates position;
+
+    void barizise(double, double, int);
 };

@@ -1,8 +1,8 @@
-15 0 12 0 LongSword Forged from Valyrian steel, + 12 damage!
-5 12 0 15 ClothArmor +12 Armor!
-10 15 0 25 Chain Vest +25 Armor!
-5 15 15 0 Wand Magic fireballs, +15 magical damage!
-17 0 15 0 Pickaxe +15 damage!
-17 0 20 0 BastardSword + 20 damage!
+15 0 7 0 LongSword Forged from Valyrian steel, + 12 damage!
+5 12 0 3 ClothArmor +3 Armor!
+10 15 0 4 Chain Vest +4 Armor!
+5 10 9 0 Wand Magic fireballs, +9 magical damage!
+17 0 8 0 Pickaxe +15 damage!
+17 0 12 0 BastardSword + 20 damage!
 1 0 0 0 HealthPotion health
 2 0 0 0 ManaPotion mana

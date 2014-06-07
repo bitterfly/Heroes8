@@ -35,21 +35,26 @@ void Monster::printSelfie(){
 }
 
 void Monster::lifeBar(){
-cout<<getName()<<" ["<<getLevel()<<"]"<<endl;
-cout<<setfill(' ');
-cout<<"HP: "<<setw(4)<<getHp()<<endl;
+    cout<<getName()<<" ["<<getLevel()<<"]"<<endl;
+    cout<<setfill(' ');
+    cout<<"HP:   ";
+    barizise(getHp(),getMaxhp(),2);
+    cout<<' '<<setw(4)<<getHp()<<endl;
 }
 
 void Monster::lifeBar(Coordinates position){
-COORD pos;
-pos.X = position.x;
-pos.Y = position.y;
+    COORD pos;
+    pos.X = position.x;
+    pos.Y = position.y;
 
-SetConsoleCursorPosition(pConsole, pos);
-cout<<getName()<<" ["<<getLevel()<<"]"<<endl;
-cout<<setfill(' ');
+    SetConsoleCursorPosition(pConsole, pos);
+    cout<<getName()<<" ["<<getLevel()<<"]"<<endl;
+    cout<<setfill(' ');
 
-pos.Y++;
-SetConsoleCursorPosition(pConsole, pos);
-cout<<"HP: "<<setw(4)<<getHp()<<endl;
+    pos.Y++;
+    SetConsoleCursorPosition(pConsole, pos);
+    cout<<"HP:   ";
+    barizise(getHp(),getMaxhp(),2);
+    cout<<' '<<setw(4)<<getHp()<<endl;
 }
+

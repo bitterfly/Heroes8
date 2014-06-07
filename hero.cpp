@@ -33,6 +33,15 @@ void Hero::setExp(int exp){
 }
 
 
+int Hero::getWeapons() const{
+    int weapons = 0;
+    for(int i = 0; i < backpack.size(); i++)
+        if(backpack[i]->getDamage() > 0)
+            weapons ++;
+    return weapons;
+}
+
+
 int Hero::getExp() const {
     return exp;
 }
@@ -61,7 +70,7 @@ void Hero::lifeBar(){
 }
 
 
-void Hero::lifeBar(Coordinates position){
+void Hero::lifeBar(Coordinates position, bool all_items){
     COORD pos;
     pos.X = position.x;
     pos.Y = position.y;
@@ -73,48 +82,47 @@ void Hero::lifeBar(Coordinates position){
 
     pos.Y++;
     SetConsoleCursorPosition(rConsole, pos);
-    cout<<"HP:   "<<setw(4)<<getHp()<<endl;
+    cout<<"HP:   ";
+    barizise(getHp(),getMaxhp(),2);
+    cout<<' '<<setw(4)<<getHp()<<endl;
 
     pos.Y++;
     SetConsoleCursorPosition(rConsole, pos);
-    cout<<"Mana: "<<setw(4)<<getMana()<<endl;
+    cout<<"Mana: ";
+    barizise(getMana(),getMaxMana(),3);
+    cout<<' '<<setw(4)<<getMana()<<endl;
 
     pos.Y++;
     SetConsoleCursorPosition(rConsole, pos);
     cout<<"Exp:  "<<setw(4)<<getExp()<<endl;
 
-    for(int i = 0; i < (int)backpack.size(); i++) {
-        pos.Y++;
-        SetConsoleCursorPosition(rConsole, pos);
-        cout<<"["<<i+1<<"]";
-        backpack[i]->print();
+
+    for(int i = 0; i < (int)backpack.size(); i++){
+        if(((backpack[i]->getDamage() == 0 && backpack[i]->getDefense() == 0) || backpack[i]->getDamage() > 0) || all_items){
+            pos.Y++;
+            SetConsoleCursorPosition(rConsole, pos);
+            cout<<"["<<i+1<<"]";
+            backpack[i]->print();
+        }
     }
 }
 
 
 bool Hero::hasItem(Item& item) {
+    if(item.getName() == "Common sword" || item.getName() == "Common shield")
+        return true;
     for(int i = 0; i < backpack.size(); i++) {
-        if (&item == backpack[i])
+        if (&item == backpack[i]){
+            cout<<"Phew, you already have a/n "<<item.getName()<<" What a luck! "<<endl;
             return true;
+        }
     }
     return false;
 }
 
 
-void Hero::add(Item &item){
-    int choice;
-    while(weight() + item.getWeight() > level*10 + 8){
-        cout<<"Your backpack is too heavy. You should drop an item: ";
-        cin>>choice;
-        drop(choice);
-    }
-    backpack.push_back(&(item));
-
-}
-
-
 void Hero::drop(int index){
-    backpack.erase(backpack.begin() + index);
+    backpack.erase(backpack.begin() + index - 1);
 }
 
 
@@ -124,4 +132,13 @@ double Hero::weight(){
         backpack_weight += backpack[i]->getWeight();
     }
     return backpack_weight;
+}
+
+
+double Hero::getDefense(){
+    double defense = 0;
+    for(int i = 0; i < backpack.size(); i++){
+        defense += backpack[i]->getDefense();
+    }
+    return defense;
 }

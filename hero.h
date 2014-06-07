@@ -25,15 +25,16 @@ public:
     void setMana(double mana);
     void setExp(int exp);
 
+    int getWeapons() const;
     int getExp() const;
     double getMana() const;
     double getMaxMana() const;
 
     void lifeBar();
-    void lifeBar(Coordinates);
+    void lifeBar(Coordinates, bool all_items = true);
     bool hasItem(Item& item);
-    void add(Item &item);
     void drop(int index);
     double weight();
+    double getDefense();
     vector <Item* > backpack;
 };

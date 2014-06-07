@@ -28,7 +28,7 @@ private:
     void printSpot(Coordinates position, bool single = false);
     void event();
     void fight();
-    void heroLifeBar();
+    void add(Item &);
     void printUnderMap(bool clear = false);
 public:
     Gameplay();

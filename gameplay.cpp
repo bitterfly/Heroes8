@@ -8,7 +8,6 @@ move(Direction)
 event()
 fight()
 printUnderMap()
-heroLifeBar()
 read
 print
 */
@@ -34,7 +33,7 @@ Gameplay::Gameplay()
         monstersInc[the_map->getAllMonstersCoordinates()[i]] = Monster(monster_names[rand() % monster_names.size()]);
     }
     /* Стартов пакет. */
-    items.push_back(Item(10, 0, 3, 0, "Common sword", "Newbie package"));
+    //items.push_back(Item(10, 0, 3, 0, "Common sword", "Newbie package"));
     items.push_back(Item(10, 0, 0, 3, "Common shield", "Newbie package"));
     dobrincho.backpack.push_back(&(items[items.size()-1]));
     dobrincho.backpack.push_back(&(items[items.size()-2]));
@@ -124,8 +123,12 @@ void Gameplay::printSpot(Coordinates position, bool single) {
             cout<<(char)176;
             break;
         case 2:
-            SetConsoleTextAttribute(hConsole, 2);
-            cout<<'*';
+            SetConsoleTextAttribute(hConsole, 3);
+            cout<<monstersInc[position].getLevel();
+            break;
+        case 7:
+            SetConsoleTextAttribute(hConsole, 4);
+            cout<<(char)233;
             break;
         default:
             SetConsoleTextAttribute(hConsole, 7);
@@ -142,6 +145,7 @@ void Gameplay::printSpot(Coordinates position, bool single) {
 
 
 bool Gameplay::move(Direction where){
+    dobrincho.setHp(dobrincho.getHp() + 3);
     Coordinates newPosition = dobrincho.position.move(where);
     Coordinates oldPosition = dobrincho.position;
     if (the_map->field[newPosition] != 1)
@@ -183,22 +187,23 @@ bool Gameplay::move(Direction where){
 
 void Gameplay::event(){
     char choice;
-    printUnderMap(true);
+    // printUnderMap(true);
     Event& event = events[rand() % events.size()];
     cout<<event.getTxt();
     if(event.getHasItem()){
         Item& item = items[rand() % items.size()];
         if(!dobrincho.hasItem(item)){
-            cout<<endl<<"You found a/n "<<item.getName()<<" which gives you"<<item.getDescription()<<endl;
+            cout<<endl<<"You found a/n "<<item.getName()<<": "<<item.getDescription()<<endl;
             cout<<"Do you want to keep it? y/n ";
             cin>>choice;
             if(choice == 'y')
-                dobrincho.add(item);
+                add(item);
             }
     }
     dobrincho.setHp(dobrincho.getHp() + event.getHp());
     dobrincho.setMana(dobrincho.getMana() + event.getMana());
     dobrincho.setExp(dobrincho.getExp() + event.getExp());
+    printUnderMap(false);
 }
 
 
@@ -211,18 +216,25 @@ void Gameplay::fight(){
     cout<<"There's a monster on your way! "<<endl;
     getch();
     system("CLS");
-    pos.Y = 10;
     pos.X = 0;
-
+    if(dobrincho.getWeapons() == 0){
+        pos.Y = 30;
+        SetConsoleCursorPosition(hConsole, pos);
+        cout<<"It seems you don't have any weapons. You search your pockets and find a spoon inside!"<<endl;
+        dobrincho.backpack.push_back(new Item(0, 0, 0.3, 0, "Spoon!", "Not the sex position."));
+    }
+    pos.Y = 10;
     while(dobrincho.getHp() > 0 && monster.getHp() > 0){
-
         monster.lifeBar(Coordinates(25, 0));
-        dobrincho.lifeBar(Coordinates(0, 0));
+        dobrincho.lifeBar(Coordinates(0, 0), false);
 
         SetConsoleCursorPosition(hConsole, pos);
         cout<<endl<<"Choose wisely: ";
         cin>>choice;
         Item* item = dobrincho.backpack[choice - 1];
+
+        if(dobrincho.backpack[0]->getName() == "Spoon!")
+            cout<<"...and again..."<<endl;
 
         // Health & Mana potion:
         if(item->getDamage() == 0 && item->getDefense() == 0){
@@ -230,6 +242,8 @@ void Gameplay::fight(){
                 dobrincho.setHp(dobrincho.getHp() + 25);
             else
                 dobrincho.setMana(dobrincho.getMana() + 25);
+            dobrincho.drop(choice - 1);
+            printUnderMap(true);
             cin>>choice;
             Item* item = dobrincho.backpack[choice - 1];
         }
@@ -245,13 +259,35 @@ void Gameplay::fight(){
         }
 
         monster.setHp(monster.getHp() - hero_damage);
-        dobrincho.setHp(dobrincho.getHp() - monster.getDamage() + item->getDefense());
+        double monster_damage = monster.getDamage() - dobrincho.getDefense();
+        if(monster_damage < 0)
+            monster_damage = 0;
+        dobrincho.setHp(dobrincho.getHp() - monster_damage);
     }
     system("CLS");
     if (dobrincho.getHp() > 0) {
         printMap();
         printUnderMap();
     }
+}
+
+
+void Gameplay::add(Item &item){
+    int choice;
+    int capacity = dobrincho.getLevel()*10 + 8;
+    if(item.getWeight() > capacity){
+        cout<<"The item is too heavy for you."<<endl;
+        return;
+    }
+    while(dobrincho.weight() + item.getWeight() > capacity){
+        cout<<"current weight: "<<dobrincho.weight()<<endl;
+        cout<<"Your backpack is too heavy. You should drop an item: ";
+        cin>>choice;
+        dobrincho.drop(choice);
+        printUnderMap(true);
+    }
+    dobrincho.backpack.push_back(&(item));
+
 }
 
 
@@ -264,11 +300,10 @@ void Gameplay::printUnderMap(bool clear) {
         pos.X = 0;
         pos.Y = the_map->getYSize() + 2;
         SetConsoleCursorPosition(hConsole, pos);
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < columns; j++) {
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j <= columns; j++) {
                 cout<<' ';
             }
-            cout<<endl;
         }
         pos.X = 0;
         pos.Y = the_map->getYSize() + 2;
