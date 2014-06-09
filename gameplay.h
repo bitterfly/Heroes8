@@ -17,7 +17,7 @@ using namespace std;
 
 class Gameplay{
 private:
-    Hero dobrincho;
+    Hero hero;
     int treasures;
     Map *the_map;
     vector<Event> events;
@@ -28,7 +28,7 @@ private:
     void printSpot(Coordinates position, bool single = false);
     void event();
     void fight();
-    void add(Item &);
+    void add();
     void printUnderMap(bool clear = false);
 public:
     Gameplay();

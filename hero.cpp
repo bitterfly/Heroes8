@@ -25,11 +25,10 @@ void Hero::setMana(double mana){
 
 void Hero::setExp(int exp){
     this->exp = exp;
-    if(this->exp >= 50){
-        level++;
-        this->exp = this->exp  - 100;
-        hp = getMaxhp();
-    }
+    if(exp >= 100)
+        this->hp = getMaxhp();
+    level += exp / 100;
+    this->exp %= 100;
 }
 
 
@@ -122,7 +121,7 @@ bool Hero::hasItem(Item& item) {
 
 
 void Hero::drop(int index){
-    backpack.erase(backpack.begin() + index - 1);
+    backpack.erase(backpack.begin() + index);
 }
 
 
